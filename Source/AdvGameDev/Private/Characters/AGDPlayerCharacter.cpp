@@ -12,4 +12,8 @@ AAGDPlayerCharacter::AAGDPlayerCharacter()
 
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraComponent->SetupAttachment(SpringArmComponent);
+
+	bAttackAllowed = true;
+	bForceRotate = false;
+	attackCombo = 0;
 }
