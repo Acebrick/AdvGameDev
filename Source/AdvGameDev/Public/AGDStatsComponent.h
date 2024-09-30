@@ -39,6 +39,20 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Additional Stats")
 	float attackSpeed;
 
+	int characterLevel;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Levelling")
+	int experience;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Levelling")
+	TArray<int> experiencePerLevel; 
+
+	int GetMaxExperience();
+
+	void HandleLevelUp();
+
+	bool isStatsInitialised;
+
 public:
 	UFUNCTION(BlueprintPure, Category = "Health")
 	float GetMaxHealth() const { return maxHealth; }
@@ -75,4 +89,25 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Additional Stats")
 	void SetAttackSpeed(float newAttackSpeed) { attackSpeed = newAttackSpeed; } 
+
+	UFUNCTION(BlueprintCallable, Category = "Levelling")
+	void UpdateCharacterLevel();
+
+	UFUNCTION(BlueprintCallable, Category = "Levelling")
+	void AddExperience(int amount);
+
+	UFUNCTION(BlueprintCallable, Category = "Levelling")
+	void SetExperience(int newExperience);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Levelling")
+	void OnLevelUp(int level, bool areStatsInitialised);
+
+	UFUNCTION(BlueprintPure, Category = "Levelling")
+	void GetTrueLevelInfo(int& trueLevel, int& trueExperience) { trueLevel = characterLevel; trueExperience = experience; }
+
+	UFUNCTION(BlueprintPure, Category = "Levelling")
+	void GetDisplayLevelInfo(int& displayLevel, int& displayExperience);
+
+	UFUNCTION(BlueprintPure, Category = "Levelling")
+	TArray<int> GetExperiencePerLevel() const { return experiencePerLevel; }
 };
