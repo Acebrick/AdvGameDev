@@ -36,6 +36,9 @@ UAGDStatsComponent::UAGDStatsComponent()
 // Called when the game starts
 void UAGDStatsComponent::BeginPlay()
 {
+	health = maxHealth;
+	energy = maxEnergy;
+
 	Super::BeginPlay();
 
 	UpdateCharacterLevel();
